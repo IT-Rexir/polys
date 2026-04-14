@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft Gallery</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background: linear-gradient(to bottom, hotpink, pink);
+    height: 1000px;
+    color: white;
+    padding: 20px;
+  }
+  .navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f3e8d8;
+  padding: 15px 30px;
+  border-radius: 40px;
+  display: flex;
+  gap: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  .navbar a {
+  text-decoration: none;
+  color: #5a4a42;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 18px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+.navbar a.active,
+.navbar a:hover {
+  background: #d6c3ad;
+}
+
+
+  h1 {
+    text-align: center;
+    margin-top: 150px;
+    margin-bottom: 35px;
+    font-size: 2.5rem;
+    color: black;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: #111827;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card .info {
+    padding: 15px;
+  }
+
+  .card .info h3 {
+    margin-bottom: 5px;
+    color: #4ade80;
+  }
+
+  .card .info p {
+    font-size: 0.9rem;
+    color: #cbd5f5;
+  }
+
+  /* Animation on load */
+  .card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  .card:nth-child(5) { animation-delay: 0.5s; }
+  .card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+   @media (max-width: 600px) {
+   .navbar {
+     gap: 10px;
+     padding: 10px 15px;
+   }
+   
+   .navbar a {
+     font-size: 12px;
+     padding: 6px 10px;
+   }
+   }
+
+</style>
+</head>
+
+<body>
+  <div class="navbar">
+  <a href="index.html">Home</a>
+  <a class="active" href="#">Gallery</a>
+  <a href="admins.html">Admins</a>
+  <a href="stuts.html">Stats</a>
+  <a href="contact.html">Contacts</a>
+</div>
+
+<h1>Polyskimchis SMP Gallery</h1>
+
+<div class="gallery">
+
+  <div class="card">
+    <img src="image.png">
+    <div class="info">
+      <h3>Border land</h3>
+      <p>server border land</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="image-1.png">
+    <div class="info">
+      <h3> Group Picture</h3>
+      <p>Group Pic</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="2026-04-10_23.24.42.png">
+    <div class="info">
+      <h3>Village</h3>
+      <p>Peaceful villager town</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="2026-04-10_04.11.18.png">
+    <div class="info">
+      <h3>Aura Farmin</h3>
+      <p>Dangerous Players</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="2026-04-08_23.23.17.png">
+    <div class="info">
+      <h3>Border Land Picture</h3>
+      <p>The Last LAnd</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="Screenshot_20260407-214831.jpg">
+    <div class="info">
+      <h3>Mga fairy</h3>
+      <p>ikangtadia</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

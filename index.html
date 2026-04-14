@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kimchis</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  /* NAVBAR (scrolls away) */
+  #navbar {
+    background-color: lightgoldenrodyellow;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  #navbar h2 {
+    font-size: 35px;
+    color: hotpink;
+    margin: 0;
+  }
+
+  #container {
+    position: fixed;  
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f3e8d8;
+    padding: 15px 30px;
+    border-radius: 40px;
+    display: flex;
+    gap: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    z-index: 1001;
+  }
+
+  #nav-links {
+    display: flex;
+    gap: 27px;
+  }
+
+  #nav-links a {
+    text-decoration: none;
+    color: #5a4a42;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 18px;
+    border-radius: 25px;
+    transition: 0.3s;
+  }
+
+  #container a.active,
+  #container a:hover {
+    background: #d6c3ad;
+  }
+
+  /* INTRO */
+  #intro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, deeppink, pink, deeppink);
+    color: darkmagenta;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeOut 2s ease 3s forwards;
+  }
+
+  #intro h1 {
+    font-size: 50px;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  #main {
+    opacity: 0;
+    background: linear-gradient(to top, pink, hotpink);
+    min-height: 100vh;
+    transform: translateY(30px);
+    transition: all 1s ease;
+    padding: 40px;
+    text-align: center;
+    z-index: 1000;
+  }
+
+  #main h1{
+    font-size: 55px;
+  }
+
+  #main.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* NEW: side by side layout */
+  .about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  .about-container img {
+    margin-top: -300px;
+    width: 600px;
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+  }
+
+  .about-container img:hover{
+    filter: grayscale(0%);
+  }
+
+  .about-container p {
+    margin-right: 300px;
+    margin-bottom: 400px;
+    max-width: 600px;
+    text-align: left;
+    font-size: 39px;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* ANIMATION */
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+  }
+
+  .aboutpol{
+    font-size: 40px;
+    margin-right: 1050px;
+    margin-top: 10px;
+  }
+
+  /* ================= MOBILE FIX ================= */
+  @media (max-width: 768px) {
+
+    body {
+      overflow-x: hidden;
+    }
+
+    #container {
+      left: 50%;
+      transform: translateX(-50%);
+      top: 10px;
+      padding: 8px 12px;
+      gap: 10px;
+    }
+
+    #nav-links{
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #nav-links a {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+
+    #main {
+      padding: 20px;
+      height: auto;
+    }
+
+    #main h1 {
+      font-size: 28px;
+    }
+
+    .about-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .about-container img {
+      margin-top: 0;
+      width: 220px;
+    }
+
+    .about-container p {
+      margin-right: 0;
+      margin-bottom: 0;
+      font-size: 18px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+    .aboutpol {
+      margin-right: 0;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    #intro h1 {
+      font-size: 28px;
+      text-align: center;
+      padding: 0 10px;
+    }
+
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <h1>🌸Welcome to Polyskimchis SMP🌸</h1>
+</div>
+
+<div id="navbar">
+  <h2></h2>
+</div>
+
+<!-- FLOATING LINKS -->
+<div id="container">
+  <div id="nav-links">
+    <a class="active" href="#">Home</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#">Admins</a>
+    <a href="stuts.html">Stats</a>
+    <a href="#">Contacts</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <h1>🌸Polyskimchis SMP🌸</h1>
+  <div class="aboutpol">
+    <h3>About Polyskimchis SMP</h3>
+  </div>
+  <div class="about-container">
+  
+    <p>
+      Polys Kimchis SMP is a server that supports crossplay for both Java and Bedrock editions, offering a community-focused experience with an active economy and dedicated shopping districts. It operates as a 24/7 hosted server with a peaceful playstyle, meaning griefing, stealing, and non-consensual PvP are strictly prohibited to maintain a mature environment.
+    </p>
+
+    <img src="file_000000007b6871fabb01d7e7f5113cc1.png" alt="Minecraft SMP">
+  </div>
+</div>
+
+<script>
+  setTimeout(() => {
+    document.getElementById("intro").style.display = "none";
+    document.body.style.overflow = "auto";
+    document.getElementById("main").classList.add("show");
+  }, 5000);
+</script>
+
+</body>
+</html>

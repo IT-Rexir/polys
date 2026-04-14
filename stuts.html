@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server Stats</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background: linear-gradient(to top, hotpink, pink);
+    color: #3b2f2f;
+    text-align: center;
+    padding: 20px;
+  }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f3e8d8;
+    padding: 15px 30px;
+    border-radius: 40px;
+    display: flex;
+    gap: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .navbar a {
+    text-decoration: none;
+    color: #5a4a42;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 18px;
+    border-radius: 25px;
+    transition: 0.3s;
+  }
+
+  .navbar a.active,
+  .navbar a:hover {
+    background: #d6c3ad;
+  }
+
+  /* HEADER */
+  .header {
+    margin-top: 140px;
+  }
+
+  .header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+  }
+
+  .header p {
+    font-size: 18px;
+    opacity: 0.7;
+  }
+
+  /* GRID (BIGGER FOR PC) */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+  }
+
+  .card {
+    background: #f3e8d8;
+    padding: 35px;
+    border-radius: 25px;
+    text-align: left;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .card h3 {
+    font-size: 25px;
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+
+  .card .big {
+    font-size: 34px;
+    font-weight: bold;
+  }
+
+  .online {
+    color: #4caf50;
+  }
+
+  .offline {
+    color: #f44336;
+  }
+
+  .small {
+    font-size: 14px;
+    opacity: 0.7;
+    margin-top: 10px;
+  }
+
+  /* SERVER IP BOX */
+  .server-ip {
+    margin-top: 20px;
+    display: inline-block;
+    background: #f3e8d8;
+    padding: 15px 30px;
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .navbar {
+      gap: 10px;
+      padding: 10px 15px;
+    }
+
+    .navbar a {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+    }
+
+    .card .big {
+      font-size: 26px;
+    }
+
+    .server-ip {
+      font-size: 18px;
+      padding: 10px 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="admins.html">Admins</a>
+  <a class="active" href="#">Stats</a>
+  <a href="contact.html">Contacts</a>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Server Stats</h1>
+  <p>Polyskimchis SMP Status</p>
+</div>
+
+<!-- GRID -->
+<div class="grid">
+
+  <div class="card">
+    <h3>Server Status</h3>
+    <div id="status" class="big">Checking...</div>
+    <div class="small">Running smoothly</div>
+  </div>
+
+  <div class="card">
+    <h3>Players Online</h3>
+    <div id="players" class="big">0 / 0</div>
+    <div class="small">Join your friends now!</div>
+  </div>
+
+  <div class="card">
+    <h3>Version</h3>
+    <div id="version" class="big">-</div>
+  </div>
+
+  <div class="card">
+    <h3>Uptime</h3>
+    <div class="big">24/7</div>
+  </div>
+
+</div>
+
+<!-- SERVER IP -->
+<div class="server-ip" id="server-ip">
+  Join Now!!!!<br>
+  IP:polyskimchis.com<br>
+  Port:19132<br>
+</div>
+
+<script>
+  const serverIP = "polyskimchis.com";
+
+  async function getStatus() {
+    try {
+      const res = await fetch(`https://api.mcstatus.io/v2/status/java/${serverIP}`);
+      const data = await res.json();
+
+      const statusEl = document.getElementById("status");
+      const playersEl = document.getElementById("players");
+      const versionEl = document.getElementById("version");
+
+      if (data.online) {
+        statusEl.textContent = "🟢 Online";
+        statusEl.className = "big online";
+
+        playersEl.textContent = `${data.players.online} / ${data.players.max}`;
+        versionEl.textContent = data.version.name_clean;
+
+      } else {
+        statusEl.textContent = "🔴 Offline";
+        statusEl.className = "big offline";
+
+        playersEl.textContent = "0 / 0";
+        versionEl.textContent = "-";
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  getStatus();
+  setInterval(getStatus, 30000);
+</script>
+
+</body>
+</html>
